@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "856078133192",
+    "project_id": "korarmy-be7d1",
+    "storage_bucket": "korarmy-be7d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856078133192:android:ba30543b1ddb5f1b4182fd",
+        "android_client_info": {
+          "package_name": "com.example.korarmy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856078133192-f1ao3ffqltmvf46qt05p0mmkg5u583gj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCln67_sH10IYoqoG5abjRPpxlw_MQODA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856078133192-f1ao3ffqltmvf46qt05p0mmkg5u583gj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
