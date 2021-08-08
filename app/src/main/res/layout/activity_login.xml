@@ -19,85 +19,86 @@
 
     </ImageView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:hint="Email"
-            android:id="@+id/TextInput_email">
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:hint="Email"-->
+<!--            android:id="@+id/TextInput_email">-->
 
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
+<!--        </com.google.android.material.textfield.TextInputEditText>-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:hint="Password"
-            android:id="@+id/TextInput_pwd">
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="70dp"-->
+<!--            android:hint="Password"-->
+<!--            android:id="@+id/TextInput_pwd">-->
 
-        </com.google.android.material.textfield.TextInputEditText>
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <Button
-        android:id="@+id/loginbtn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/round_btn"
-        android:textColor="#ffffff"
-        android:text="Login">
-
-    </Button>
+<!--        </com.google.android.material.textfield.TextInputEditText>-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
 
+<!--    <Button-->
+<!--        android:id="@+id/loginbtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@drawable/round_btn"-->
+<!--        android:textColor="#ffffff"-->
+<!--        android:text="Login">-->
+
+<!--    </Button>-->
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10"
-        >
-
-        <TextView
-            android:id="@+id/findpwdbtn"
-            android:clickable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="5"
-            android:text="Find Password"
-            android:textSize="24dp">
 
 
-        </TextView>
-        <TextView
-            android:id="@+id/signupbtn"
-            android:clickable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="5"
-            android:text="Sign Up"
-            android:textSize="24dp"
-            android:textColor="@android:color/holo_blue_dark">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="10"-->
+<!--        >-->
 
-        </TextView>
+<!--        <TextView-->
+<!--            android:id="@+id/findpwdbtn"-->
+<!--            android:clickable="true"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_weight="5"-->
+<!--            android:text="Find Password"-->
+<!--            android:textSize="24dp">-->
 
-    </LinearLayout>
+
+<!--        </TextView>-->
+<!--        <TextView-->
+<!--            android:id="@+id/signupbtn"-->
+<!--            android:clickable="true"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_weight="5"-->
+<!--            android:text="Sign Up"-->
+<!--            android:textSize="24dp"-->
+<!--            android:textColor="@android:color/holo_blue_dark">-->
+
+<!--        </TextView>-->
+
+<!--    </LinearLayout>-->
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googlebtn"
-        android:layout_width="200dp"
-        android:layout_height="50dp" />
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"/>
 
 
 </LinearLayout>
