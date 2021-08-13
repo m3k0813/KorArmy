@@ -20,7 +20,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button login_btn;
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
@@ -64,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         frag3 = new Frag3();
         frag4 = new Frag4();
         setFrag(0);
+
     }
 
     // 프레그 이동

@@ -1,38 +1,48 @@
 package com.example.korarmy.frag;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.korarmy.LoginActivity;
 import com.example.korarmy.R;
+import com.example.korarmy.RecyAdapter;
+import com.example.korarmy.RecyclerData;
+
+import java.util.ArrayList;
 
 
 public class Frag1 extends Fragment {
     private View view;
-    private Button login_btn;
+    private RecyclerView recyclerView;
+    private RecyAdapter recyAdapter;
+    private ArrayList<RecyclerData> arrayList= new ArrayList<>();
+    private LinearLayoutManager linearLayoutManager;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag1, container, false);
 
-        login_btn = view.findViewById(R.id.login_btn);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyAdapter = new RecyAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(recyAdapter);
+        RecyclerData recyclerData = new RecyclerData("자유게시판");
+        RecyclerData recyclerData2 = new RecyclerData("비밀게시판");
+        arrayList.add(recyclerData);
+        arrayList.add(recyclerData2);
+        recyAdapter.notifyDataSetChanged();
 
-        login_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
 
         return view;
     }
