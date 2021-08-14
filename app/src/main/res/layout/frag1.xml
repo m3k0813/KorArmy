@@ -11,6 +11,10 @@
         android:orientation="horizontal" >
 
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -19,16 +23,16 @@
         android:layout_height="100dp"
         >
 
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="버튼1" />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="버튼1" />
 
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="버튼2"
-                android:layout_alignParentRight="true"/>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="버튼2"
+            android:layout_alignParentRight="true"/>
 
         <Button
             android:layout_width="150dp"

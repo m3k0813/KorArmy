@@ -32,6 +32,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private FirebaseAuth auth;
     private GoogleApiClient googleApiClient;
     private static final int REQ_SIGH_GOOGLE = 100; // 구글 로그인 결과 코드
+    private TextView signupbtn;
+    private Button loginbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 startActivityForResult(intent, REQ_SIGH_GOOGLE);
             }
         });
+
+        signupbtn = findViewById(R.id.signupbtn);
+        signupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
         // 구그 로그인 인증 요청 했을 떄 결과 값을 되돌려 받는 곳
@@ -85,7 +97,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             if (task.isSuccessful()) {
                                 Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                            intent.putExtra("name", account.getDisplayName());
 
                                 startActivity(intent);
                             } else {

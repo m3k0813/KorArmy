@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="10">
 
     <FrameLayout
         android:id="@+id/main_frame"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
         >
 
 
@@ -18,9 +20,10 @@
         android:id="@+id/bottomNavi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         app:itemIconTint="#000000"
         app:itemTextColor="#000000"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu" />
 
 
 </LinearLayout>
