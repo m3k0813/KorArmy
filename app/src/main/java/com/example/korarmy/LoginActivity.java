@@ -34,12 +34,40 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private static final int REQ_SIGH_GOOGLE = 100; // 구글 로그인 결과 코드
     private TextView signupbtn;
     private Button loginbtn;
+    private TextInputEditText TextInput_email;
+    private TextInputEditText TextInput_pwd;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        loginbtn = findViewById(R.id.loginbtn);
+        TextInput_email = findViewById(R.id.TextInput_email);
+        TextInput_pwd = findViewById(R.id.TextInput_pwd);
+        firebaseAuth = firebaseAuth.getInstance();
+
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = TextInput_email.getText().toString().trim();
+                String pwd = TextInput_pwd.getText().toString().trim();
+                //String형 변수 email.pwd(edittext에서 받오는 값)으로 로그인하는것
+                firebaseAuth.signInWithEmailAndPassword(email, pwd)
+                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {//성공했을때
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                } else {//실패했을때
+                                    Toast.makeText(LoginActivity.this, "아이디 또는 패스워드가 잘못 입력 되었습니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -70,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 startActivity(intent);
             }
         });
+
 
     }
 
