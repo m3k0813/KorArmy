@@ -13,6 +13,7 @@ public class SplashActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceStare);
         setContentView(R.layout.activity_splash);
 
+
         if (MySharedPreferences.getUserEamil(this).length() != 0) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
