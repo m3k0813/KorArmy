@@ -42,9 +42,11 @@ public class Frag1 extends Fragment {
         recyclerView.setAdapter(recyAdapter);
         RecyclerData recyclerData = new RecyclerData("자유게시판");
         RecyclerData recyclerData2 = new RecyclerData("비밀게시판");
-        arrayList.add(recyclerData);
-        arrayList.add(recyclerData2);
-        recyAdapter.notifyDataSetChanged();
+        if (arrayList.isEmpty()) {
+            arrayList.add(recyclerData);
+            arrayList.add(recyclerData2);
+            recyAdapter.notifyDataSetChanged();
+        }
 
         ViewPager2 viewPager2 = view.findViewById(R.id.viewpager2);
         FragmentPagerAdapter fragmentPagerAdapter = new Adapter(getChildFragmentManager());

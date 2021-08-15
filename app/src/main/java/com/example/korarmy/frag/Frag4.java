@@ -12,25 +12,26 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.korarmy.LoginActivity;
+import com.example.korarmy.MySharedPreferences;
 import com.example.korarmy.R;
 
 
 public class Frag4 extends Fragment {
 
     private View view;
-    private Button login_btn;
+    private Button logoutbtn;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag4, container, false);
 
-        login_btn = view.findViewById(R.id.login_btn);
-
-        login_btn.setOnClickListener(new View.OnClickListener() {
+        logoutbtn = view.findViewById(R.id.logoutbtn);
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                MySharedPreferences.userEmailClear(getActivity().getApplicationContext());
+                Intent intent = new Intent(getActivity(),LoginActivity.class);
                 startActivity(intent);
             }
         });
