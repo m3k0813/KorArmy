@@ -39,14 +39,14 @@ public class RecyAdapter extends RecyclerView.Adapter<RecyAdapter.CustomViewHold
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        holder.tv_title.setText(arrayList.get(position).getTv_title());
+        holder.tv_board.setText(arrayList.get(position).getTv_title());
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                String curName = holder.tv_title.getText().toString();
+                String curName = holder.tv_board.getText().toString();
                 if (position == 0) {
                     Intent intent = new Intent(v.getContext(), BoardActivity.class);
                     v.getContext().startActivity(intent);
@@ -66,11 +66,11 @@ public class RecyAdapter extends RecyclerView.Adapter<RecyAdapter.CustomViewHold
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView tv_title;
+        protected TextView tv_board;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+            this.tv_board = (TextView) itemView.findViewById(R.id.tv_board);
         }
     }
 

@@ -12,42 +12,58 @@
         android:weightSum="10">
 
         <ImageView
-            android:id="@+id/iv_back"
+            android:id="@+id/iv_close"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:clickable="true"
-            app:srcCompat="@drawable/ic_first_page"/>
+            app:srcCompat="@drawable/ic_close"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="8"
-            android:text="자유게시판"
+            android:text="글 작성"
             android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="24dp"
             />
 
         <ImageView
-            android:id="@+id/iv_create"
+            android:id="@+id/iv_check"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:clickable="true"
-            app:srcCompat="@drawable/ic_create_black_24dp"
-           />
+            app:srcCompat="@drawable/ic_check"
+            />
 
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerboard"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+
+        <EditText
+            android:id="@+id/edit_title"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Title"
+            android:textSize="24dp"
+            android:textStyle="normal"/>
+
+        <EditText
+            android:id="@+id/edit_ctx"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:text="Ctx"
+            android:textSize="24dp"
+            android:textStyle="normal" />
+    </LinearLayout>
 
 
 

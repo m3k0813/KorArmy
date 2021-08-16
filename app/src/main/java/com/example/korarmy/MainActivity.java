@@ -17,6 +17,8 @@ import com.example.korarmy.frag.Frag3;
 import com.example.korarmy.frag.Frag4;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
