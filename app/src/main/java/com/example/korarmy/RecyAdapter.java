@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
+// 메인액티비티 리사이클러뷰 아답터
 public class RecyAdapter extends RecyclerView.Adapter<RecyAdapter.CustomViewHolder> {
 
     private ArrayList<RecyclerData> arrayList;
