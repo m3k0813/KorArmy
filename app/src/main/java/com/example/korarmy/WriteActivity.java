@@ -53,10 +53,9 @@ public class WriteActivity extends AppCompatActivity {
             String ctx = edit_ctx.getText().toString();
 
             // if null==title && null == ctx
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("title");
-            myRef.setValue(title);
-
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+            BoardData boardData = new BoardData(title, ctx);
+            database.child("message").push().setValue(boardData);
             finish();
     }
 }

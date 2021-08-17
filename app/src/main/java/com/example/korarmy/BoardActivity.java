@@ -5,9 +5,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -32,13 +40,36 @@ public class BoardActivity extends AppCompatActivity{
         arrayList = new ArrayList<>();
         boardAdapter = new BoardAdapter(arrayList);
         recyclerView.setAdapter(boardAdapter);
-        BoardData boardData = new BoardData("Test", "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세", "3:02");
-        BoardData boardData2 = new BoardData("애국가", "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세", "3:04");
-        BoardData boardData3 = new BoardData("테스트", "테스트", "3:05");
-        arrayList.add(boardData);
-        arrayList.add(boardData2);
-        arrayList.add(boardData3);
-        boardAdapter.notifyDataSetChanged();
+
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("board").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                BoardData boardData = snapshot.getValue(BoardData.class);
+                boardAdapter.add(boardData.get);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        })
 
         // 글 작성하기
         iv_create = findViewById(R.id.iv_create);
