@@ -62,7 +62,9 @@ public class WriteActivity extends AppCompatActivity {
             String title = edit_title.getText().toString();
             String ctx = edit_ctx.getText().toString();
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd hh:mm"); // 날짜와 시간
-            Date date = new Date();
+
+            long now = System.currentTimeMillis();
+            Date date = new Date(now);
             String dates = dateFormat.format(date).toString();
             HashMap<Object, String> hashMap = new HashMap<>();
             hashMap.put("title",title);

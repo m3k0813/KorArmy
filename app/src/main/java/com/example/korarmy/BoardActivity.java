@@ -7,12 +7,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,8 +24,8 @@ public class BoardActivity extends AppCompatActivity{
     private ImageView iv_create;
     private ImageView iv_back;
     private RecyclerView recyclerView;
-    private ArrayList<BoardData> arrayList;
-    private BoardAdapter boardAdapter;
+    private RecyclerView.Adapter adapter;
+    private ArrayList<Board> arrayList;
     private LinearLayoutManager linearLayoutManager;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -41,8 +39,30 @@ public class BoardActivity extends AppCompatActivity{
         recyclerView = (RecyclerView) findViewById(R.id.recyclerboard);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        arrayList = new ArrayList<>();
+        arrayList = new ArrayList<Board>();
 
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference();
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
+                arrayList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Board board = snapshot.getValue(Board.class);
+                    arrayList.add(board);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("BoardActivity", String.valueOf(error.toException()));
+            }
+        });
+
+        adapter = new CustomAdapter(arrayList, this);
+        recyclerView.setAdapter(adapter);
 
         // 글 작성하기
         iv_create = findViewById(R.id.iv_create);

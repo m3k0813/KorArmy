@@ -52,7 +52,7 @@
             android:id="@+id/edit_title"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:text="Title"
+            android:hint="title"
             android:textSize="24dp"
             android:textStyle="normal"/>
 
@@ -60,7 +60,7 @@
             android:id="@+id/edit_ctx"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:text="Ctx"
+            android:hint="ctx"
             android:textSize="24dp"
             android:textStyle="normal" />
     </LinearLayout>
