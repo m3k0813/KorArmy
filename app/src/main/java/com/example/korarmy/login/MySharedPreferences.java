@@ -1,4 +1,4 @@
-package com.example.korarmy;
+package com.example.korarmy.login;
 
 import android.content.Context;
 import android.content.SharedPreferences;

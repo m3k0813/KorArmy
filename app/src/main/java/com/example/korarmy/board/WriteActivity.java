@@ -1,4 +1,4 @@
-package com.example.korarmy;
+package com.example.korarmy.board;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.korarmy.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -56,12 +57,12 @@ public class WriteActivity extends AppCompatActivity {
     }
         public void write() {
             // 로그인 uid
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = user.getUid();
+//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//            String uid = user.getDisplayName();
 
             String title = edit_title.getText().toString();
             String ctx = edit_ctx.getText().toString();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd hh:mm"); // 날짜와 시간
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd/hh:mm"); // 날짜와 시간
 
             long now = System.currentTimeMillis();
             Date date = new Date(now);
@@ -69,15 +70,15 @@ public class WriteActivity extends AppCompatActivity {
             HashMap<Object, String> hashMap = new HashMap<>();
             hashMap.put("title",title);
             hashMap.put("ctx",ctx);
-            hashMap.put("date",dates);
-            hashMap.put("uid", uid);
+//            hashMap.put("time",dates);
 
             // if null==title && null == ctx
             DatabaseReference database = FirebaseDatabase.getInstance().getReference();
 //            BoardData boardData = new BoardData(title, ctx, dateFormat.format(date).toString(),);
-            database.child("message").push().setValue(hashMap);
+            database.child("board").push().setValue(hashMap);
             Toast.makeText(getApplicationContext(), "질문이 등록되었습니다.", Toast.LENGTH_SHORT).show();
-            finish();
+            Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+            startActivity(intent);
     }
 }
 

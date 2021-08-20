@@ -1,10 +1,12 @@
 package com.example.korarmy;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.korarmy.login.LoginActivity;
+import com.example.korarmy.login.MySharedPreferences;
 
 public class SplashActivity  extends AppCompatActivity {
 

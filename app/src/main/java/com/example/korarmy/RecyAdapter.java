@@ -5,18 +5,16 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.korarmy.board.BoardActivity;
+import com.example.korarmy.board.SecretBoardActivity;
 
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+import java.util.ArrayList;
 
 // 메인액티비티 리사이클러뷰 아답터
 public class RecyAdapter extends RecyclerView.Adapter<RecyAdapter.CustomViewHolder> {
@@ -46,7 +44,7 @@ public class RecyAdapter extends RecyclerView.Adapter<RecyAdapter.CustomViewHold
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                String curName = holder.tv_board.getText().toString();
+
                 if (position == 0) {
                     Intent intent = new Intent(v.getContext(), BoardActivity.class);
                     v.getContext().startActivity(intent);

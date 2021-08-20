@@ -1,10 +1,11 @@
-package com.example.korarmy;
+package com.example.korarmy.board;
 
 public class Board {
     private String title;
     private String ctx;
     private String time;
-    private String uid;
+//    private String uid;
+
 
     public String getTitle() {
         return title;
@@ -30,11 +31,11 @@ public class Board {
         this.time = time;
     }
 
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
+//    public String getUid() {
+//        return uid;
+//    }
+//
+//    public void setUid(String uid) {
+//        this.uid = uid;
+//    }
 }

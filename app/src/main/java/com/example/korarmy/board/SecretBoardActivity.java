@@ -1,4 +1,4 @@
-package com.example.korarmy;
+package com.example.korarmy.board;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.korarmy.MainActivity;
+import com.example.korarmy.R;
 
 public class SecretBoardActivity extends AppCompatActivity {
 

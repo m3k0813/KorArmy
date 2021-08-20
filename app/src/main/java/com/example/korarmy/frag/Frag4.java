@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.korarmy.LoginActivity;
-import com.example.korarmy.MySharedPreferences;
+import com.example.korarmy.login.LoginActivity;
+import com.example.korarmy.login.MySharedPreferences;
 import com.example.korarmy.R;
 
 

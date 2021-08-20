@@ -1,5 +1,6 @@
 package com.example.korarmy;
 
+// 메인 리사이클러 (frag1)
 public class RecyclerData {
 
     private String tv_title;
