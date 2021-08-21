@@ -11,11 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.korarmy.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -24,8 +19,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     private ArrayList<Board> arrayList;
     private Context context;
-    private FirebaseDatabase database;
-    private DatabaseReference databaseReference;
     private Board board;
     private ItemClickListener itemClickListener;
 

@@ -36,7 +36,7 @@ public class BoardActivity extends AppCompatActivity{
     private LinearLayoutManager linearLayoutManager;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    private String keyvalue;
+
 
 
     @Override
@@ -76,12 +76,11 @@ public class BoardActivity extends AppCompatActivity{
         adapter = new CustomAdapter(arrayList, this, new CustomAdapter.ItemClickListener() {
             @Override
             public void onItemClicked(int position, Board board) {
-                // 아이템 클릭 시 어뎁터와 소통
+                // 아이템 클릭 시 어뎁터와 소통 데이터베이스 키값을 넘겨줌
                 String key = board.key;
                 Intent intent = new Intent(getApplicationContext(), ViewBoardActivity.class);
                 intent.putExtra("key", key);
                 startActivity(intent);
-                Toast.makeText(BoardActivity.this, "클릭" + key, Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(adapter);
