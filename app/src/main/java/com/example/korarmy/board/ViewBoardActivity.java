@@ -30,7 +30,7 @@ public class ViewBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_viewboard);
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
+        String id = intent.getStringExtra("key");
 
         vb_title = findViewById(R.id.vb_title);
         vb_ctx = findViewById(R.id.vb_ctx);
@@ -39,7 +39,7 @@ public class ViewBoardActivity extends AppCompatActivity {
 
 
 
-        // 첫 화면 가기
+        // 뒤로 가기
         iv_back = findViewById(R.id.iv_back);
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override

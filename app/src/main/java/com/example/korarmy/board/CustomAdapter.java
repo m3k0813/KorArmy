@@ -26,10 +26,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     private Context context;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private Board board;
+    private ItemClickListener itemClickListener;
 
-    public CustomAdapter(ArrayList<Board> arrayList, Context context) {
+    public CustomAdapter(ArrayList<Board> arrayList, Context context, ItemClickListener itemClickListener) {
         this.arrayList = arrayList;
         this.context = context;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -53,29 +56,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                database = FirebaseDatabase.getInstance();
-                databaseReference = database.getReference().child("board");
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapShot : snapshot.getChildren()) {
-                            String pushKey = dataSnapShot.getKey();
-                            Intent intent = new Intent(v.getContext(), ViewBoardActivity.class);
-                            intent.putExtra("id", pushKey);
-                            v.getContext().startActivity(intent);
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-
+                itemClickListener.onItemClicked(position, arrayList.get(position));
             }
         });
+    }
+    // 아이템 클릭 시 키 값을 받아오기 위한 인터페이스 BoardActivity와 연결
+    public interface ItemClickListener {
+        void onItemClicked(int position, Board board);
     }
 
     @Override

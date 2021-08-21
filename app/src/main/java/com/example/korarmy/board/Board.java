@@ -1,9 +1,13 @@
 package com.example.korarmy.board;
 
+import com.google.firebase.database.Exclude;
+
 public class Board {
     private String title;
     private String ctx;
     private String time;
+    @Exclude
+    String key;   // 데이터베이스 키값
 //    private String uid;
 
 
@@ -38,4 +42,12 @@ public class Board {
 //    public void setUid(String uid) {
 //        this.uid = uid;
 //    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 }

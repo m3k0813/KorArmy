@@ -6,14 +6,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.korarmy.MainActivity;
 import com.example.korarmy.R;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BoardActivity extends AppCompatActivity{
     
@@ -32,6 +36,7 @@ public class BoardActivity extends AppCompatActivity{
     private LinearLayoutManager linearLayoutManager;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private String keyvalue;
 
 
     @Override
@@ -56,6 +61,7 @@ public class BoardActivity extends AppCompatActivity{
                 arrayList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Board board = snapshot.getValue(Board.class);
+                    board.key = snapshot.getKey();
                     arrayList.add(board);
                 }
                 adapter.notifyDataSetChanged();
@@ -67,7 +73,17 @@ public class BoardActivity extends AppCompatActivity{
             }
         });
 
-        adapter = new CustomAdapter(arrayList, this);
+        adapter = new CustomAdapter(arrayList, this, new CustomAdapter.ItemClickListener() {
+            @Override
+            public void onItemClicked(int position, Board board) {
+                // 아이템 클릭 시 어뎁터와 소통
+                String key = board.key;
+                Intent intent = new Intent(getApplicationContext(), ViewBoardActivity.class);
+                intent.putExtra("key", key);
+                startActivity(intent);
+                Toast.makeText(BoardActivity.this, "클릭" + key, Toast.LENGTH_SHORT).show();
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         // 글 작성하기
