@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:text="시간"
+        android:paddingLeft="10dp"
         />
 
     </LinearLayout>

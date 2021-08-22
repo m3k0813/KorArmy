@@ -2,6 +2,7 @@ package com.example.korarmy.board;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,32 +52,32 @@ public class WriteActivity extends AppCompatActivity {
         iv_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                write();
+
+                String title = edit_title.getText().toString();
+                String ctx = edit_ctx.getText().toString();
+                if (title.isEmpty() || ctx.isEmpty()) {
+                    Toast.makeText(WriteActivity.this, "텍스트를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }else{
+                    write(title, ctx);
+                }
             }
         });
     }
-        public void write() {
+        public void write(String title, String ctx) {
             // 로그인 uid
 //            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //            String uid = user.getDisplayName();
 
-            String title = edit_title.getText().toString();
-            String ctx = edit_ctx.getText().toString();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd/hh:mm"); // 날짜와 시간
 
-            long now = System.currentTimeMillis();
-            Date date = new Date(now);
-            String dates = dateFormat.format(date).toString();
+            long now = System.currentTimeMillis();    // 현재 시간 저장
             HashMap<Object, String> hashMap = new HashMap<>();
             hashMap.put("title",title);
             hashMap.put("ctx",ctx);
-//            hashMap.put("time",dates);
+            hashMap.put("time", String.valueOf(now));
 
-            // if null==title && null == ctx
             DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-//            BoardData boardData = new BoardData(title, ctx, dateFormat.format(date).toString(),);
             database.child("board").push().setValue(hashMap);
-            Toast.makeText(getApplicationContext(), "질문이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "게시글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
             startActivity(intent);
     }

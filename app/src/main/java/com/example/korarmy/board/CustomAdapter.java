@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.korarmy.R;
+import com.example.korarmy.Timeforamt;
 
 import java.util.ArrayList;
 
@@ -42,8 +43,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_ctx.setText(arrayList.get(position).getCtx());
-        holder.tv_time.setText(arrayList.get(position).getTime());
-//        holder.tv_uid.setText(arrayList.get(position).getUid());
+        String time = arrayList.get(position).getTime();
+        long date = Long.parseLong(time);
+        holder.tv_time.setText(Timeforamt.formatTimeString(date));  // 몇분 전 출력
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +69,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         TextView tv_title;
         TextView tv_ctx;
         TextView tv_time;
-        TextView tv_uid;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,7 +76,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             this.tv_title = itemView.findViewById(R.id.tv_title);
             this.tv_ctx = itemView.findViewById(R.id.tv_ctx);
             this.tv_time = itemView.findViewById(R.id.tv_time);
-//            this.tv_uid = itemView.findViewById(R.id.tv_uid);
         }
     }
 }

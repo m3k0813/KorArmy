@@ -68,7 +68,7 @@
             app:srcCompat="@drawable/ic_profile" />
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/vb_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/profile"
@@ -77,11 +77,11 @@
             />
 
         <TextView
-            android:id="@+id/tv_time"
+            android:id="@+id/vb_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/tv_name"
-            android:layout_below="@id/tv_name"
+            android:layout_alignLeft="@id/vb_name"
+            android:layout_below="@id/vb_name"
             android:layout_marginTop="7dp"
             android:text="2시간 전"
             />
