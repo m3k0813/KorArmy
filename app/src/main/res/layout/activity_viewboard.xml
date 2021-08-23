@@ -4,6 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -85,6 +87,26 @@
             android:layout_marginTop="7dp"
             android:text="2시간 전"
             />
+
+        <TextView
+            android:id="@+id/vb_update"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/vb_time"
+            android:layout_toRightOf="@+id/vb_time"
+            android:text="수정"
+            android:layout_marginLeft="30dp"/>
+
+        <TextView
+            android:id="@+id/vb_delete"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/vb_update"
+            android:layout_toRightOf="@+id/vb_update"
+            android:text="삭제"
+            android:layout_marginLeft="10dp"/>
 
     </RelativeLayout>
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class WriteActivity extends AppCompatActivity {
     private ImageView iv_check;
     private EditText edit_title;
     private EditText edit_ctx;
+
 
 
     @Override
@@ -64,9 +66,9 @@ public class WriteActivity extends AppCompatActivity {
         });
     }
         public void write(String title, String ctx) {
-            // 로그인 uid
-//            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//            String uid = user.getDisplayName();
+//             로그인 uid
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
 
 
             long now = System.currentTimeMillis();    // 현재 시간 저장
@@ -74,6 +76,7 @@ public class WriteActivity extends AppCompatActivity {
             hashMap.put("title",title);
             hashMap.put("ctx",ctx);
             hashMap.put("time", String.valueOf(now));
+            hashMap.put("uid", uid);
 
             DatabaseReference database = FirebaseDatabase.getInstance().getReference();
             database.child("board").push().setValue(hashMap);

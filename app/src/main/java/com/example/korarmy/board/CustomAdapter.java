@@ -43,10 +43,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         holder.tv_title.setText(arrayList.get(position).getTitle());
         holder.tv_ctx.setText(arrayList.get(position).getCtx());
+
+        // 몇분 전 출력
         String time = arrayList.get(position).getTime();
         long date = Long.parseLong(time);
-        holder.tv_time.setText(Timeforamt.formatTimeString(date));  // 몇분 전 출력
+        holder.tv_time.setText(Timeforamt.formatTimeString(date));
 
+        // 아이템 클릭
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

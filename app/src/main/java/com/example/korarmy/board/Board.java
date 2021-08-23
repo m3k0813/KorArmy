@@ -8,7 +8,7 @@ public class Board {
     private String time;
     @Exclude
     String key;   // 데이터베이스 키값
-//    private String uid;
+    private String uid;
 
 
     public String getTitle() {
@@ -35,13 +35,13 @@ public class Board {
         this.time = time;
     }
 
-//    public String getUid() {
-//        return uid;
-//    }
-//
-//    public void setUid(String uid) {
-//        this.uid = uid;
-//    }
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public String getKey() {
         return key;

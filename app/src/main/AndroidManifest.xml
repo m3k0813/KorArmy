@@ -14,6 +14,7 @@
         <activity android:name=".board.WriteActivity" />
         <activity android:name=".board.BoardActivity" />
         <activity android:name=".board.ViewBoardActivity" />
+        <activity android:name=".board.UpdateBoardActivity" />
         <activity android:name=".board.SecretBoardActivity" />
         <activity android:name=".SplashActivity" >
             <intent-filter>
