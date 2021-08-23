@@ -123,16 +123,20 @@ public class ViewBoardActivity extends AppCompatActivity {
     }
 
     public void deleteBoard() {
-        database.getReference().child("Board").child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference().child("board").child(key);
+        databaseReference.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(), "삭제 성공", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "글이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                startActivity(intent);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 System.out.println("error: "+e.getMessage());
-                Toast.makeText(getApplicationContext(), "삭제 실패", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "글 삭제 실패", Toast.LENGTH_SHORT).show();
             }
         });
     }
