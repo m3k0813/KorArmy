@@ -4,8 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -33,122 +31,140 @@
             />
 
 
-
     </LinearLayout>
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp">
+        android:layout_height="match_parent"
+        >
 
-        <TextView
-            android:id="@+id/vb_title"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="제목"
-            android:textSize="24dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp">
-
-        <ImageView
-            android:id="@+id/profile"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            app:srcCompat="@drawable/ic_profile" />
-
-        <TextView
-            android:id="@+id/vb_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/profile"
-            android:layout_toRightOf="@id/profile"
-            android:text="익명"
-            />
-
-        <TextView
-            android:id="@+id/vb_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/vb_name"
-            android:layout_below="@id/vb_name"
-            android:layout_marginTop="7dp"
-            android:text="2시간 전"
-            />
-
-        <TextView
-            android:id="@+id/vb_update"
-            android:clickable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/vb_time"
-            android:layout_toRightOf="@+id/vb_time"
-            android:text="수정"
-            android:layout_marginLeft="30dp"/>
-
-        <TextView
-            android:id="@+id/vb_delete"
-            android:clickable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/vb_update"
-            android:layout_toRightOf="@+id/vb_update"
-            android:text="삭제"
-            android:layout_marginLeft="10dp"/>
-
-    </RelativeLayout>
+            android:orientation="vertical">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical">-->
+                <TextView
+                    android:id="@+id/vb_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="제목"
+                    android:textSize="24dp"
+                    android:textStyle="bold" />
 
-<!--        <ImageView-->
-<!--            android:layout_width="200dp"-->
-<!--            android:layout_height="200dp"-->
-<!--            android:src="@mipmap/ic_launcher"/>-->
+            </LinearLayout>
 
-<!--    </LinearLayout>-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp">
+                <ImageView
+                    android:id="@+id/profile"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    app:srcCompat="@drawable/ic_profile" />
 
+                <TextView
+                    android:id="@+id/vb_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/profile"
+                    android:layout_toRightOf="@id/profile"
+                    android:text="익명"
+                    />
 
-        <TextView
-            android:id="@+id/vb_ctx"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="내용"
-            android:textSize="18dp"
-            android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/vb_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/vb_name"
+                    android:layout_below="@id/vb_name"
+                    android:layout_marginTop="7dp"
+                    android:text="2시간 전"
+                    />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/vb_update"
+                    android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/vb_time"
+                    android:layout_toRightOf="@+id/vb_time"
+                    android:text="수정"
+                    android:layout_marginLeft="30dp"/>
+
+                <TextView
+                    android:id="@+id/vb_delete"
+                    android:clickable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/vb_update"
+                    android:layout_toRightOf="@+id/vb_update"
+                    android:text="삭제"
+                    android:layout_marginLeft="10dp"/>
+
+            </RelativeLayout>
 
 
 
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:orientation="vertical">-->
 
+        <!--        <ImageView-->
+        <!--            android:layout_width="200dp"-->
+        <!--            android:layout_height="200dp"-->
+        <!--            android:src="@mipmap/ic_launcher"/>-->
+
+        <!--    </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp">
+
+
+                <TextView
+                    android:id="@+id/vb_ctx"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:text="내용"
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
 </LinearLayout>

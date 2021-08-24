@@ -55,23 +55,27 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onClick(View v) {
                 String email = TextInput_email.getText().toString().trim();
                 String pwd = TextInput_pwd.getText().toString().trim();
-                //String형 변수 email.pwd(edittext에서 받오는 값)으로 로그인하는것
-                firebaseAuth.signInWithEmailAndPassword(email, pwd)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {//성공했을때
-                                    // 자동 로그인 저장
-                                    MySharedPreferences.setUserEmail(getApplicationContext(), email);
+                if (email.isEmpty() || pwd.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }else{
+                    //String형 변수 email.pwd(edittext에서 받오는 값)으로 로그인하는것
+                    firebaseAuth.signInWithEmailAndPassword(email, pwd)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {//성공했을때
+                                        // 자동 로그인 저장
+                                        MySharedPreferences.setUserEmail(getApplicationContext(), email);
 
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {//실패했을때
-                                    Toast.makeText(LoginActivity.this, "아이디 또는 패스워드가 잘못 입력 되었습니다.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {//실패했을때
+                                        Toast.makeText(LoginActivity.this, "아이디 또는 패스워드가 잘못 입력 되었습니다.", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             }
         });
 
