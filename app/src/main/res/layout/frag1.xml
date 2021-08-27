@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,51 +11,258 @@
         android:layout_height="200dp"
         android:orientation="horizontal" >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
+            android:background="@drawable/layout_background" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="5"
+                android:padding="20dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/army"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="육군"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/classes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이병"
+                        android:textStyle="bold"
+                        android:layout_alignBottom="@id/army"
+                        android:layout_toRightOf="@+id/army"
+                        android:layout_marginLeft="6dp"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:srcCompat="@drawable/private1"
+                        android:layout_alignTop="@id/classes"
+                        android:layout_toRightOf="@+id/classes"
+                        android:layout_marginLeft="5dp"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+                        android:id="@+id/endday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전역 D -"
+                        android:textSize="20dp"
+                        android:layout_above="@id/nextClasses"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="399"
+                        android:textSize="20dp"
+                        android:layout_alignTop="@+id/endday"
+                        android:layout_toRightOf="@+id/endday"
+                        android:layout_marginLeft="3dp"/>
+
+                    <TextView
+                        android:id="@+id/nextClasses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="일병까지 D -"
+                        android:textSize="20dp"
+                        android:layout_alignParentBottom="true" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="399"
+                        android:textSize="20dp"
+                        android:layout_alignTop="@+id/nextClasses"
+                        android:layout_toRightOf="@+id/nextClasses"
+                        android:layout_marginLeft="3dp"
+                        />
+
+
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="5"
+                android:padding="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_enlistment_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="입대일"
+                        android:layout_alignTop="@+id/enlistment_date"
+                        android:layout_toLeftOf="@+id/enlistment_date"
+                        />
+
+                    <TextView
+                        android:id="@+id/enlistment_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2021.9.21"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentRight="true"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_discharge_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전역일"
+                        android:layout_alignTop="@id/discharge_date"
+                        android:layout_toLeftOf="@+id/discharge_date"
+                        />
+
+                    <TextView
+                        android:id="@+id/discharge_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2021.9.21"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentRight="true"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_salary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="월급"
+                        android:textSize="20dp"
+                        android:layout_alignTop="@+id/salary"
+                        android:layout_toLeftOf="@+id/salary"
+                        />
+
+                    <TextView
+                        android:id="@+id/salary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="65,432"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="130dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         >
 
-        <Button
-            android:layout_width="150dp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="버튼1" />
+            android:padding="5dp"
+            android:background="@drawable/layout_background"
+            >
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="버튼2"
-            android:layout_alignParentRight="true"/>
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="버튼3"
-            android:layout_alignParentBottom="true"/>
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="버튼1" />
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="버튼4"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"/>
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="버튼2"
+                android:layout_alignParentRight="true"/>
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="버튼3"
+                android:layout_alignParentBottom="true"/>
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="버튼4"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
+
+    </LinearLayout>
+
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="20dp">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="@drawable/layout_background"
+            />
 
 
     </LinearLayout>
