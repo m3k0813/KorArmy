@@ -24,7 +24,7 @@ public class SplashActivity  extends AppCompatActivity {
                 MyShardPreferences();
                 finish();
             }
-        },3000);
+        },1000);
     }
     @Override
     protected void onPause() {

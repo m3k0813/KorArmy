@@ -49,6 +49,7 @@
                         android:layout_marginLeft="6dp"/>
 
                     <ImageView
+                        android:id="@+id/iv_classes"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         app:srcCompat="@drawable/private1"
@@ -74,6 +75,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/end_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="399"
@@ -92,6 +94,7 @@
 
 
                     <TextView
+                        android:id="@+id/nextClasses_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="399"
