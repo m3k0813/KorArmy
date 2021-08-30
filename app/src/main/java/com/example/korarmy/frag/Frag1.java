@@ -40,7 +40,7 @@ public class Frag1 extends Fragment {
     private View view;
     private RecyclerView recyclerView;
     private RecyAdapter recyAdapter;
-    private ArrayList<RecyclerData> arrayList= new ArrayList<>();
+    private ArrayList<RecyclerData> arrayList = new ArrayList<>();
     private TextView army; // 군인 정보
     private TextView classes; // 계급
     private ImageView iv_classes; // 계급이미지
@@ -52,9 +52,6 @@ public class Frag1 extends Fragment {
     private TextView salary; // 월급
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    String enlistment_d;
-    
-
 
     @Nullable
     @Override
@@ -82,7 +79,7 @@ public class Frag1 extends Fragment {
                 Users users = snapshot.getValue(Users.class);
                 army.setText(users.getArmy());    // 군대 정보
                 enlistment_date.setText(users.getEnlistment_date());  // 입대일
-                cal_discharge_date(users.getArmy(), users.getEnlistment_date());    // 전역일 계산
+                cal_discharge_date(users.getArmy(), users.getEnlistment_date(), users.getDischarge_date());   // 전역일 계산
             }
 
             @Override
@@ -90,7 +87,6 @@ public class Frag1 extends Fragment {
 
             }
         });
-
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -108,34 +104,121 @@ public class Frag1 extends Fragment {
     }
 
     // 전역일 계산
-    private void cal_discharge_date(String army, String enl){
-        DateFormat dateFormat = new SimpleDateFormat ("yyyy-MM-dd");
+    private void cal_discharge_date(String army, String enl, String dis) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
         try {
-            Date date = dateFormat.parse(enl);
-            cal.setTime(date);
+            Date enlDate = dateFormat.parse(enl);     // 입대 날짜
+            Date disDate = dateFormat.parse(dis);
+            long now = System.currentTimeMillis();     // 현재 날짜
+            Date curDate = new Date(now);
 
-            if (army.equals("육군")) {
-                cal.add(Calendar.MONTH, 18);
-                cal.add(Calendar.DATE, -1);
-            }else if(army.equals("해군")){
-                cal.add(Calendar.MONTH, 20);
-                cal.add(Calendar.DATE, -1);
-            }else if(army.equals("공군")){
-                cal.add(Calendar.MONTH, 21);
-                cal.add(Calendar.DATE, -1);
-            } else if (army.equals("보충역")) {
-                cal.add(Calendar.MONTH, 21);
-                cal.add(Calendar.DATE, -1);
-            } else if (army.equals("해병대")) {
-                cal.add(Calendar.MONTH, 18);
-                cal.add(Calendar.DATE, -1);
+            cal.setTime(enlDate);     // 달력 계산
+
+            // 계급 계산
+            long diff = curDate.getTime() - enlDate.getTime();
+            long days = diff / (1000*60*60*24);     // 입대일과 현재일의 차이를 일 단위로 저장
+
+            long diffEnd = disDate.getTime() - curDate.getTime();
+            long end = (diffEnd / (1000*60*60*24))+1;        // 남은 전역일 계산
+
+            end_day.setText(String.valueOf(end));
+
+            if (days > 420) {
+                classes.setText("병장");
+                iv_classes.setImageResource(R.drawable.segeant);
+                salary.setText("608,500원");
+                nextclasses.setText("전역까지 D-");
+                nextClasses_day.setText(String.valueOf(end));
+            } else if (days > 240) {
+                classes.setText("상병");
+                iv_classes.setImageResource(R.drawable.corporal);
+                salary.setText("549,200원");
+                nextclasses.setText("병장까지 D-");
+            } else if (days > 60) {
+                classes.setText("일병");
+                iv_classes.setImageResource(R.drawable.private_first_class);
+                salary.setText("496,900원");
+                nextclasses.setText("상병까지 D-");
+            } else {
+                classes.setText("이병");
+                iv_classes.setImageResource(R.drawable.private1);
+                salary.setText("459,100원");
+                nextclasses.setText("일병까지 D-");
             }
 
-            String to = dateFormat.format(cal.getTime());
-            discharge_date.setText(to);
+            // 전역일 계산 (단축복무 계산필요)
+//            if (army.equals("육군")) {
+//                cal.add(Calendar.MONTH, 18);
+//                cal.add(Calendar.DATE, -1);
+//                days = 540 - days;
+//                end_day.setText(String.valueOf(days));
+//            } else if (army.equals("해군")) {
+//                cal.add(Calendar.MONTH, 20);
+//                cal.add(Calendar.DATE, -1);
+//                days = 600 - days;
+//                end_day.setText(String.valueOf(days));
+//            } else if (army.equals("공군")) {
+//                cal.add(Calendar.MONTH, 21);
+//                cal.add(Calendar.DATE, -1);
+//                days = 630 - days;
+//                end_day.setText(String.valueOf(days));
+//            } else if (army.equals("보충역")) {
+//                cal.add(Calendar.MONTH, 21);
+//                cal.add(Calendar.DATE, -1);
+//                days = 630 - days;
+//                end_day.setText(String.valueOf(days));
+//            } else if (army.equals("해병대")) {
+//                cal.add(Calendar.MONTH, 18);
+//                cal.add(Calendar.DATE, -1);
+//                days = 540 - days;
+//                end_day.setText(String.valueOf(days));
+//            }
+//            String to = dateFormat.format(cal.getTime());
+//            discharge_date.setText(to);
+
+
+            discharge_date.setText(dis);
         } catch (ParseException e) {
             e.printStackTrace();
+        }
+    }
+
+    // 계급, 전역 날짜 계산
+    private void classes(String army, String enl) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date enlDate = dateFormat.parse(enl);     // 입대 날짜
+            long now = System.currentTimeMillis();     // 현재 시각
+            Date curDate = new Date(now);
+
+            long diff = curDate.getTime() - enlDate.getTime();
+            long days = diff / (1000*60*60*24);     // 입대일과 현재일의 차이를 일 단위로 저장
+            
+            end_day.setText(String.valueOf(days));
+
+            Log.d("tag", String.valueOf(days));
+            if (days > 420) {
+                classes.setText("병장");
+                iv_classes.setImageResource(R.drawable.segeant);
+                salary.setText("608,500원");
+            } else if (days > 240) {
+                classes.setText("상병");
+                iv_classes.setImageResource(R.drawable.corporal);
+                salary.setText("549,200원");
+            } else if (days > 60) {
+                classes.setText("일병");
+                iv_classes.setImageResource(R.drawable.private_first_class);
+                salary.setText("496,900원");
+            } else {
+                classes.setText("이병");
+                iv_classes.setImageResource(R.drawable.private1);
+                salary.setText("459,100원");
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+
         }
     }
 }

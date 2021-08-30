@@ -5,6 +5,7 @@ public class Users {
     private String email;
     private String enlistment_date;
     private String username;
+    private String discharge_date;
 
     public String getArmy() {
         return army;
@@ -36,5 +37,13 @@ public class Users {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getDischarge_date() {
+        return discharge_date;
+    }
+
+    public void setDischarge_date(String discharge_date) {
+        this.discharge_date = discharge_date;
     }
 }

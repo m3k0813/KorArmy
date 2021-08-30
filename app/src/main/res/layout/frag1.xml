@@ -44,16 +44,17 @@
                         android:layout_height="wrap_content"
                         android:text="이병"
                         android:textStyle="bold"
+                        android:textSize="18dp"
                         android:layout_alignBottom="@id/army"
                         android:layout_toRightOf="@+id/army"
                         android:layout_marginLeft="6dp"/>
 
                     <ImageView
                         android:id="@+id/iv_classes"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="38dp"
+                        android:layout_height="42dp"
                         app:srcCompat="@drawable/private1"
-                        android:layout_alignTop="@id/classes"
+                        android:layout_alignBottom="@id/classes"
                         android:layout_toRightOf="@+id/classes"
                         android:layout_marginLeft="5dp"
                         />
@@ -61,7 +62,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     >
 
@@ -69,7 +70,7 @@
                         android:id="@+id/endday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="전역 D -"
+                        android:text="전역 D-"
                         android:textSize="20dp"
                         android:layout_above="@id/nextClasses"
                         />
