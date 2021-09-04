@@ -44,14 +44,16 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = editText_email.getText().toString().trim();
                 final String pwd = editText_pwd.getText().toString().trim();
-                final String name = editText_name.getText().toString().trim();
+                final String username = editText_name.getText().toString().trim();
             firebaseAuth.createUserWithEmailAndPassword(email, pwd)
                     .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()) {
-                        Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+                        Intent intent = new Intent(SignupActivity.this, ArmyInfoActivity.class);
+                        intent.putExtra("email", email);
+                        intent.putExtra("username", username);
                         startActivity(intent);
                         finish();
 
