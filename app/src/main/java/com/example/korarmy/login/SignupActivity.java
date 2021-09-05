@@ -45,26 +45,35 @@ public class SignupActivity extends AppCompatActivity {
                 final String email = editText_email.getText().toString().trim();
                 final String pwd = editText_pwd.getText().toString().trim();
                 final String username = editText_name.getText().toString().trim();
-            firebaseAuth.createUserWithEmailAndPassword(email, pwd)
-                    .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    if (task.isSuccessful()) {
-                        Intent intent = new Intent(SignupActivity.this, ArmyInfoActivity.class);
-                        intent.putExtra("email", email);
-                        intent.putExtra("username", username);
-                        startActivity(intent);
-                        finish();
+                if (email.isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "이메일을 설정해주세요.", Toast.LENGTH_SHORT).show();
+                } else if (pwd.isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "비밀번호를 설정해주세요.", Toast.LENGTH_SHORT).show();
+                } else if (username.isEmpty()) {
+                    Toast.makeText(SignupActivity.this, "이름을 설정해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    firebaseAuth.createUserWithEmailAndPassword(email, pwd)
+                            .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    } else {
-                        Toast.makeText(SignupActivity.this, "등록 에러", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+                                    if (task.isSuccessful()) {
+                                        Intent intent = new Intent(SignupActivity.this, ArmyInfoActivity.class);
+                                        intent.putExtra("email", email);
+                                        intent.putExtra("username", username);
+                                        intent.putExtra("pwd", pwd);
+                                        startActivity(intent);
+                                        finish();
+
+                                    } else {
+                                        Toast.makeText(SignupActivity.this, "등록 에러", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                }
+                            });
                 }
-            });
-        }
+            }
     });
-
-}
+    }
 }
