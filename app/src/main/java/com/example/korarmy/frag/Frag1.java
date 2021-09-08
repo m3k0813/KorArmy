@@ -119,6 +119,7 @@ public class Frag1 extends Fragment {
             // 계급 계산
             long diff = curDate.getTime() - enlDate.getTime();
             long days = diff / (1000*60*60*24);     // 입대일과 현재일의 차이를 일 단위로 저장
+            Log.d("tagid", String.valueOf(days));
 
             long diffEnd = disDate.getTime() - curDate.getTime();
             long end = (diffEnd / (1000*60*60*24))+1;        // 남은 전역일 계산
@@ -144,7 +145,15 @@ public class Frag1 extends Fragment {
                 nextclasses.setText("상병까지 D-");
                 long n = 255 - days;
                 nextClasses_day.setText(String.valueOf(n));
-            } else {
+            }else if (days < 0) {
+                classes.setText("민간인");
+                iv_classes.setImageResource(R.drawable.images);
+                salary.setText(" ");
+                nextclasses.setText("입대까지 D-");
+                long re = enlDate.getTime() - curDate.getTime();
+                long redays = re / (1000*60*60*24) + 1;     // 입대일과 현재일의 차이를 일 단위로 저장
+                nextClasses_day.setText(String.valueOf(redays));
+            }else {
                 classes.setText("이병");
                 iv_classes.setImageResource(R.drawable.private1);
                 salary.setText("459,100원");

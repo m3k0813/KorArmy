@@ -46,6 +46,7 @@ public class ArmyInfoActivity extends AppCompatActivity {
     String[] armys = {"육군", "해군", "공군", "해병대", "보충역"};
     private DatePickerDialog datePickerDialog;
     private Button select_enl;
+    private TextView select_dis;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     FirebaseAuth firebaseAuth;
@@ -85,6 +86,7 @@ public class ArmyInfoActivity extends AppCompatActivity {
         initDatePicker();
         select_enl = findViewById(R.id.select_enl);
         select_enl.setText(getTodayDate());
+        select_dis = findViewById(R.id.select_dis);
 
         button = findViewById(R.id.confirmbtn);
         button.setOnClickListener(new View.OnClickListener() {
@@ -132,9 +134,9 @@ public class ArmyInfoActivity extends AppCompatActivity {
                 month = month + 1;
                 String date = makeDateString(dayOfMonth, month, year);
                 select_enl.setText(date);
-                enl = date;
-                Log.d("tagid", enl);
+                enl = date;    // 입대일 설정
 
+                // 제대일 설정
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Calendar cal = Calendar.getInstance();
                 try {
@@ -144,6 +146,7 @@ public class ArmyInfoActivity extends AppCompatActivity {
                     cal.add(Calendar.DAY_OF_MONTH, -1);
                     String to = dateFormat.format(cal.getTime());
                     dis = to;
+                    select_dis.setText(to);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
