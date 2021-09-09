@@ -34,6 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+// 회원가입 후 군인 정보를 입력하는 액티비티
 public class ArmyInfoActivity extends AppCompatActivity {
 
     private String enl;
@@ -147,10 +148,10 @@ public class ArmyInfoActivity extends AppCompatActivity {
                     String to = dateFormat.format(cal.getTime());
                     dis = to;
                     select_dis.setText(to);
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
             }
         };
         Calendar calendar = Calendar.getInstance();
@@ -164,39 +165,43 @@ public class ArmyInfoActivity extends AppCompatActivity {
     }
 
     private String makeDateString(int day, int month, int year) {
+
+        if(day < 10){
+            return year + "-" +getMonthFormat(month) + "-" + " 0" + day;
+        }
         return year + "-" +getMonthFormat(month) + "-" + day;
     }
 
     private String getMonthFormat(int month) {
         if (month == 1) {
-            return "1";
+            return "01";
         }
         if (month == 2) {
-            return "2";
+            return "02";
         }
         if (month == 3) {
-            return "3";
+            return "03";
         }
         if (month == 4) {
-            return "4";
+            return "04";
         }
         if (month == 4) {
-            return "4";
+            return "04";
         }
         if (month == 5) {
-            return "5";
+            return "05";
         }
         if (month == 6) {
-            return "6";
+            return "06";
         }
         if (month == 7) {
-            return "7";
+            return "07";
         }
         if (month == 8) {
-            return "8";
+            return "08";
         }
         if (month == 9) {
-            return "9";
+            return "09";
         }
         if (month == 10) {
             return "10";
