@@ -23,6 +23,7 @@ public class SignupActivity extends AppCompatActivity {
     private EditText editText_email;
     private EditText editText_name;
     private EditText editText_pwd;
+    private EditText editText_pwdagain;
     private Button confirmbtn;
     FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -36,6 +37,7 @@ public class SignupActivity extends AppCompatActivity {
         editText_email = findViewById(R.id.editText_email);
         editText_name = findViewById(R.id.editText_name);
         editText_pwd = findViewById(R.id.editText_pwd);
+        editText_pwdagain = findViewById(R.id.editText_pwdagain);
         confirmbtn = findViewById(R.id.confirmbtn);
         firebaseAuth = firebaseAuth.getInstance();
 
@@ -44,6 +46,7 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = editText_email.getText().toString().trim();
                 final String pwd = editText_pwd.getText().toString().trim();
+                final String pwdagain = editText_pwdagain.getText().toString().trim();
                 final String username = editText_name.getText().toString().trim();
 
                 if (email.isEmpty()) {
@@ -52,6 +55,8 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(SignupActivity.this, "비밀번호를 설정해주세요.", Toast.LENGTH_SHORT).show();
                 } else if (username.isEmpty()) {
                     Toast.makeText(SignupActivity.this, "이름을 설정해주세요.", Toast.LENGTH_SHORT).show();
+                } else if (!pwd.equals(pwdagain)) {
+                    Toast.makeText(SignupActivity.this, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 } else {
                     firebaseAuth.createUserWithEmailAndPassword(email, pwd)
                             .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {

@@ -167,7 +167,7 @@ public class ArmyInfoActivity extends AppCompatActivity {
     private String makeDateString(int day, int month, int year) {
 
         if(day < 10){
-            return year + "-" +getMonthFormat(month) + "-" + " 0" + day;
+            return year + "-" +getMonthFormat(month) + "-" + "0" + day;
         }
         return year + "-" +getMonthFormat(month) + "-" + day;
     }
