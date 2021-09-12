@@ -29,6 +29,7 @@ public class WriteActivity extends AppCompatActivity {
     private ImageView iv_check;
     private EditText edit_title;
     private EditText edit_ctx;
+    private String ind;
 
 
 
@@ -36,6 +37,9 @@ public class WriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
+
+        Intent indIntent = getIntent();
+        ind = getIntent().getStringExtra("ind");
 
         edit_title = (EditText) findViewById(R.id.edit_title);
         edit_ctx = (EditText) findViewById(R.id.edit_ctx);
@@ -45,7 +49,13 @@ public class WriteActivity extends AppCompatActivity {
         iv_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                if (ind.equals("1")) {
+                    Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                    startActivity(intent);
+                } else if (ind.equals("2")) {
+                    Intent intent = new Intent(getApplicationContext(), SecretBoardActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -70,7 +80,6 @@ public class WriteActivity extends AppCompatActivity {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
 
-
             long now = System.currentTimeMillis();    // 현재 시간 저장
             HashMap<Object, String> hashMap = new HashMap<>();
             hashMap.put("title",title);
@@ -78,11 +87,19 @@ public class WriteActivity extends AppCompatActivity {
             hashMap.put("time", String.valueOf(now));
             hashMap.put("uid", uid);
 
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-            database.child("board").push().setValue(hashMap);
-            Toast.makeText(getApplicationContext(), "게시글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
-            startActivity(intent);
+            if (ind.equals("1")) {             // 자유게시판
+                DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+                database.child("board").push().setValue(hashMap);
+                Toast.makeText(getApplicationContext(), "게시글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                startActivity(intent);
+            } else if (ind.equals("2")) {       // 비밀게시판
+                DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+                database.child("secretboard").push().setValue(hashMap);
+                Toast.makeText(getApplicationContext(), "게시글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), SecretBoardActivity.class);
+                startActivity(intent);
+            }
     }
 }
 

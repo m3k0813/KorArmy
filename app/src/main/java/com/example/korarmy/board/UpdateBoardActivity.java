@@ -31,6 +31,7 @@ public class UpdateBoardActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     String key;
+    String ind;
 
 
     @Override
@@ -43,9 +44,15 @@ public class UpdateBoardActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
+        ind = intent.getStringExtra("ind");
 
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference().child("board").child(key);
+        if (ind.equals("1")) {
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference().child("board").child(key);
+        } else if (ind.equals("2")) {
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference().child("secretboard").child(key);
+        }
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -93,8 +100,13 @@ public class UpdateBoardActivity extends AppCompatActivity {
         hashMap.put("ctx",ctx);
         hashMap.put("time", String.valueOf(now));
 
+
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-        database.child("board").child(key).updateChildren(hashMap);
+        if (ind.equals("1")) {
+            database.child("board").child(key).updateChildren(hashMap);
+        } else if (ind.equals("2")) {
+            database.child("secretboard").child(key).updateChildren(hashMap);
+        }
         Toast.makeText(getApplicationContext(), "게시글이 수정되었습니다.", Toast.LENGTH_SHORT).show();
 
         Handler handler = new Handler();
@@ -103,6 +115,7 @@ public class UpdateBoardActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(UpdateBoardActivity.this, ViewBoardActivity.class); //화면 전환
                 intent.putExtra("key", key);
+                intent.putExtra("ind", ind);
                 startActivity(intent);
                 finish();
             }

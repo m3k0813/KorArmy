@@ -80,6 +80,7 @@ public class BoardActivity extends AppCompatActivity{
                 String key = board.key;
                 Intent intent = new Intent(getApplicationContext(), ViewBoardActivity.class);
                 intent.putExtra("key", key);
+                intent.putExtra("ind", "1");
                 startActivity(intent);
             }
         });
@@ -91,6 +92,7 @@ public class BoardActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), WriteActivity.class);
+                intent.putExtra("ind", "1");
                 startActivity(intent);
             }
         });

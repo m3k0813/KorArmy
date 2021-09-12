@@ -1,5 +1,6 @@
 package com.example.korarmy.board;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.korarmy.MainActivity;
 import com.example.korarmy.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +38,7 @@ public class ViewBoardActivity extends AppCompatActivity {
     private TextView vb_delete;
     String uid;    // 데이터데이스에 저장된 uid
     String key;    // 데이터베이스 데이터 키값
+    String ind;    // 게시판 구분
     private ImageView iv_back;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -47,6 +50,7 @@ public class ViewBoardActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
+        ind = intent.getStringExtra("ind");
 
         vb_title = findViewById(R.id.vb_title);
         vb_ctx = findViewById(R.id.vb_ctx);
@@ -55,8 +59,13 @@ public class ViewBoardActivity extends AppCompatActivity {
         vb_delete = findViewById(R.id.vb_delete);
 
         // 데이터베이스 불러오기
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference().child("board").child(key);
+        if (ind.equals("1")) {
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference().child("board").child(key);
+        } else if (ind.equals("2")) {
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference().child("secretboard").child(key);
+        }
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -86,7 +95,7 @@ public class ViewBoardActivity extends AppCompatActivity {
         vb_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateBoard();
+                updateBoard(ind);
             }
         });
 
@@ -95,8 +104,13 @@ public class ViewBoardActivity extends AppCompatActivity {
         iv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
-                startActivity(intent);
+                if (ind.equals("1")) {
+                    Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                    startActivity(intent);
+                } else if (ind.equals("2")) {
+                    Intent intent = new Intent(getApplicationContext(), SecretBoardActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -105,7 +119,7 @@ public class ViewBoardActivity extends AppCompatActivity {
     // 날짜 출력
     public String setDate(String getTime){
         long time = Long.parseLong(getTime);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm=dd hh:mm:ss"); // 날짜와 시간
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); // 날짜와 시간
         Date date = new Date(time);
         String dates = dateFormat.format(date);
         return dates;
@@ -123,14 +137,25 @@ public class ViewBoardActivity extends AppCompatActivity {
     }
 
     public void deleteBoard() {
-        database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference().child("board").child(key);
+        if (ind.equals("1")) {
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference().child("board").child(key);
+        } else if (ind.equals("2")) {
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference().child("secretboard").child(key);
+        }
         databaseReference.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(getApplicationContext(), "글이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
-                startActivity(intent);
+                if (ind.equals("1")) {
+                    Intent intent = new Intent(getApplicationContext(), BoardActivity.class);
+                    startActivity(intent);
+                } else if (ind.equals("2")) {
+                    Intent intent = new Intent(getApplicationContext(), SecretBoardActivity.class);
+                    startActivity(intent);
+                }
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -141,9 +166,10 @@ public class ViewBoardActivity extends AppCompatActivity {
         });
     }
 
-    public void updateBoard() {
+    public void updateBoard(String ind) {
         Intent intent = new Intent(getApplicationContext(), UpdateBoardActivity.class);
         intent.putExtra("key", key);
+        intent.putExtra("ind", ind);
         startActivity(intent);
     }
 }

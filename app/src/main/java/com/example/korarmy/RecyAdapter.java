@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.korarmy.board.BoardActivity;
+import com.example.korarmy.board.QuestionBoardActivity;
 import com.example.korarmy.board.SecretBoardActivity;
 
 import java.util.ArrayList;
@@ -50,6 +51,9 @@ public class RecyAdapter extends RecyclerView.Adapter<RecyAdapter.CustomViewHold
                     v.getContext().startActivity(intent);
                 } else if (position == 1) {
                     Intent intent1 = new Intent(v.getContext(), SecretBoardActivity.class);
+                    v.getContext().startActivity(intent1);
+                } else if (position == 2) {
+                    Intent intent1 = new Intent(v.getContext(), QuestionBoardActivity.class);
                     v.getContext().startActivity(intent1);
                 }
 

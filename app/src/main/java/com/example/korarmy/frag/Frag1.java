@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.korarmy.ArmyService;
 import com.example.korarmy.R;
 import com.example.korarmy.RecyAdapter;
 import com.example.korarmy.RecyclerData;
@@ -27,7 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -95,9 +93,11 @@ public class Frag1 extends Fragment {
         recyclerView.setAdapter(recyAdapter);
         RecyclerData recyclerData = new RecyclerData("자유게시판");
         RecyclerData recyclerData2 = new RecyclerData("비밀게시판");
+        RecyclerData recyclerData3 = new RecyclerData("질문게시판");
         if (arrayList.isEmpty()) {
             arrayList.add(recyclerData);
             arrayList.add(recyclerData2);
+            arrayList.add(recyclerData3);
             recyAdapter.notifyDataSetChanged();
         }
 
