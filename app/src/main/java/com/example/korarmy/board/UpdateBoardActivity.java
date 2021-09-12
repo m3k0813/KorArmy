@@ -52,6 +52,9 @@ public class UpdateBoardActivity extends AppCompatActivity {
         } else if (ind.equals("2")) {
             database = FirebaseDatabase.getInstance();
             databaseReference = database.getReference().child("secretboard").child(key);
+        } else if (ind.equals("3")) {
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference().child("questionboard").child(key);
         }
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -106,6 +109,8 @@ public class UpdateBoardActivity extends AppCompatActivity {
             database.child("board").child(key).updateChildren(hashMap);
         } else if (ind.equals("2")) {
             database.child("secretboard").child(key).updateChildren(hashMap);
+        } else if (ind.equals("3")) {
+            database.child("questionboard").child(key).updateChildren(hashMap);
         }
         Toast.makeText(getApplicationContext(), "게시글이 수정되었습니다.", Toast.LENGTH_SHORT).show();
 

@@ -31,14 +31,11 @@ public class WriteActivity extends AppCompatActivity {
     private EditText edit_ctx;
     private String ind;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
-        Intent indIntent = getIntent();
         ind = getIntent().getStringExtra("ind");
 
         edit_title = (EditText) findViewById(R.id.edit_title);
@@ -54,6 +51,9 @@ public class WriteActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if (ind.equals("2")) {
                     Intent intent = new Intent(getApplicationContext(), SecretBoardActivity.class);
+                    startActivity(intent);
+                } else if (ind.equals("3")) {
+                    Intent intent = new Intent(getApplicationContext(), QuestionBoardActivity.class);
                     startActivity(intent);
                 }
             }
@@ -99,7 +99,13 @@ public class WriteActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "게시글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), SecretBoardActivity.class);
                 startActivity(intent);
-            }
+            } else if (ind.equals("3")) {       // 비밀게시판
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+            database.child("questionboard").push().setValue(hashMap);
+            Toast.makeText(getApplicationContext(), "게시글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), QuestionBoardActivity.class);
+            startActivity(intent);
+    }
     }
 }
 

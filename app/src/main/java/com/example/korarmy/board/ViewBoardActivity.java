@@ -65,6 +65,9 @@ public class ViewBoardActivity extends AppCompatActivity {
         } else if (ind.equals("2")) {
             database = FirebaseDatabase.getInstance();
             databaseReference = database.getReference().child("secretboard").child(key);
+        } else if (ind.equals("3")) {
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference().child("questionboard").child(key);
         }
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -110,6 +113,9 @@ public class ViewBoardActivity extends AppCompatActivity {
                 } else if (ind.equals("2")) {
                     Intent intent = new Intent(getApplicationContext(), SecretBoardActivity.class);
                     startActivity(intent);
+                } else if (ind.equals("3")) {
+                    Intent intent = new Intent(getApplicationContext(), QuestionBoardActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -143,6 +149,9 @@ public class ViewBoardActivity extends AppCompatActivity {
         } else if (ind.equals("2")) {
             database = FirebaseDatabase.getInstance();
             databaseReference = database.getReference().child("secretboard").child(key);
+        } else if (ind.equals("3")) {
+            database = FirebaseDatabase.getInstance();
+            databaseReference = database.getReference().child("questionboard").child(key);
         }
         databaseReference.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -153,6 +162,9 @@ public class ViewBoardActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else if (ind.equals("2")) {
                     Intent intent = new Intent(getApplicationContext(), SecretBoardActivity.class);
+                    startActivity(intent);
+                } else if (ind.equals("3")) {
+                    Intent intent = new Intent(getApplicationContext(), QuestionBoardActivity.class);
                     startActivity(intent);
                 }
                 finish();
