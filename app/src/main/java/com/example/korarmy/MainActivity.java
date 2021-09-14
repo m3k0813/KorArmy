@@ -9,16 +9,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.example.korarmy.frag.Frag1;
 import com.example.korarmy.frag.Frag2;
 import com.example.korarmy.frag.Frag3;
-import com.example.korarmy.frag.Frag4;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private Frag1 frag1;
     private Frag2 frag2;
     private Frag3 frag3;
-    private Frag4 frag4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +47,6 @@ public class MainActivity extends AppCompatActivity {
                         setFrag(2);
                         break;
 
-                    case R.id.action_four:
-                        setFrag(3);
-                        break;
-
                 }
                 return true;
             }
@@ -63,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         frag1 = new Frag1();
         frag2 = new Frag2();
         frag3 = new Frag3();
-        frag4 = new Frag4();
         setFrag(0);
 
     }
@@ -83,10 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 2 :
                 ft.replace(R.id.main_frame, frag3);
-                ft.commit();
-                break;
-            case 3 :
-                ft.replace(R.id.main_frame, frag4);
                 ft.commit();
                 break;
         }
