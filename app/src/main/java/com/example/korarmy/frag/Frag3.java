@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,9 +15,7 @@ import com.example.korarmy.R;
 import com.example.korarmy.Users;
 import com.example.korarmy.login.LoginActivity;
 import com.example.korarmy.login.MySharedPreferences;
-import com.firebase.ui.auth.data.model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.korarmy.login.MyidActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -66,11 +62,13 @@ public class Frag3 extends Fragment {
         my_id = view.findViewById(R.id.my_id);
         my_id.setText(uid);
 
+        // 회원정보변경
         id_info = view.findViewById(R.id.id_info);
         id_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), MyidActivity.class);
+                startActivity(intent);
             }
         });
 
