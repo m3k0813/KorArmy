@@ -32,8 +32,7 @@ public class MyidActivity extends AppCompatActivity {
     private TextView pwd_change;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    private EditText current_pwd, new_pwd, renew_pwd;
-    LinearLayout dialogView;
+
 
     @Override
 
@@ -81,23 +80,18 @@ public class MyidActivity extends AppCompatActivity {
         pwd_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogView = (LinearLayout) View.inflate(MyidActivity.this, R.layout.dialog, null);
+                final EditText editText = new EditText(MyidActivity.this);
+
+
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MyidActivity.this);
                 dlg.setTitle("비밀번호 변경");
-                dlg.setView(dialogView);
+                dlg.setMessage("본인 이메일을 입력하세요.");
+                dlg.setView(editText);
                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        current_pwd = findViewById(R.id.current_pwd);
-                        new_pwd = findViewById(R.id.new_pwd);
-                        renew_pwd = findViewById(R.id.renew_pwd);
-
-                        String currentPwd = current_pwd.getText().toString();
-                        String newPwd = new_pwd.getText().toString();
-                        String renewPwd = renew_pwd.getText().toString();
-
-
-                        Toast.makeText(MyidActivity.this, "비빌번호가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                        FirebaseAuth.getInstance().sendPasswordResetEmail(editText.getText().toString());
+                        Toast.makeText(MyidActivity.this, "이메일이 전송되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 dlg.setNegativeButton("취소", new DialogInterface.OnClickListener() {
