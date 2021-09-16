@@ -67,7 +67,6 @@ public class SignupActivity extends AppCompatActivity {
                                         Intent intent = new Intent(SignupActivity.this, ArmyInfoActivity.class);
                                         intent.putExtra("email", email);
                                         intent.putExtra("username", username);
-                                        intent.putExtra("pwd", pwd);
                                         startActivity(intent);
                                         finish();
 

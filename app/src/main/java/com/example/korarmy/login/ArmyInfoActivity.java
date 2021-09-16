@@ -1,5 +1,6 @@
 package com.example.korarmy.login;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.korarmy.MainActivity;
 import com.example.korarmy.R;
 import com.example.korarmy.board.BoardActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,7 +43,6 @@ public class ArmyInfoActivity extends AppCompatActivity {
     private String dis;
     private String username;
     private String email;
-    private String pwd;
     private String army;
     private Button button;
     String[] armys = {"육군", "해군", "공군", "해병대", "보충역"};
@@ -50,7 +51,7 @@ public class ArmyInfoActivity extends AppCompatActivity {
     private TextView select_dis;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
-    FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class ArmyInfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
         username = intent.getStringExtra("username");
-        pwd = intent.getStringExtra("pwd");
+
 
         Spinner spinner = (Spinner) findViewById(R.id.armyspinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -110,9 +111,10 @@ public class ArmyInfoActivity extends AppCompatActivity {
                     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                     database.child("users").child(uid).setValue(hashMap);
 
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
+
                 }
             }
         });

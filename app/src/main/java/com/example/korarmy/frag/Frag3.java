@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,9 +14,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.korarmy.R;
 import com.example.korarmy.Users;
+import com.example.korarmy.board.BoardActivity;
+import com.example.korarmy.board.QuestionBoardActivity;
+import com.example.korarmy.board.SecretBoardActivity;
 import com.example.korarmy.login.LoginActivity;
 import com.example.korarmy.login.MySharedPreferences;
 import com.example.korarmy.login.MyidActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -77,10 +83,25 @@ public class Frag3 extends Fragment {
         signoutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 파이어베이스 계정 삭제
                 mAuth = FirebaseAuth.getInstance();
                 mAuth.getCurrentUser().delete();
+                
+                // 유저DB정보 삭제
+                database = FirebaseDatabase.getInstance();
+                databaseReference = database.getReference().child("users").child(uid);
+                databaseReference.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+ 
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("error: "+e.getMessage());
+                    }
+                });
                 logout();
-
             }
         });
 
