@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private TextInputEditText TextInput_email;
     private TextInputEditText TextInput_pwd;
     FirebaseAuth firebaseAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,6 +142,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 MySharedPreferences.setUserEmail(getApplicationContext(), googleEmail);
 
                                 Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+
                                 Intent intent = new Intent(getApplicationContext(), ArmyInfoActivity.class);
                                 intent.putExtra("email", googleEmail);
                                 intent.putExtra("username", googleName);

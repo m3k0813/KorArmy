@@ -226,12 +226,12 @@
             <Button
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="버튼1" />
+                android:text="달력" />
 
             <Button
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="버튼2"
+                android:text="오늘의 식단"
                 android:layout_alignParentRight="true"/>
 
             <Button
