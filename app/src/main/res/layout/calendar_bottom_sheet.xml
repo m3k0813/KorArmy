@@ -2,18 +2,32 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="할일"/>
+        android:text="일정 추가"
+        android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/btn"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="버튼"/>
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:hint="일정"/>
+
+        <Button
+            android:id="@+id/savebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저장"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

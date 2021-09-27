@@ -15,15 +15,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 public class BottomSheetDialog extends BottomSheetDialogFragment {
     private View view;
     private BottomSheetListener listener;
-    private Button button;
+    private Button savebtn;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.calendar_bottom_sheet, container, false);
 
-        button = view.findViewById(R.id.btn);
-        button.setOnClickListener(new View.OnClickListener() {
+        savebtn = view.findViewById(R.id.savebtn);
+        savebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onButtonClicked("바텀 숨겨짐");
