@@ -1,6 +1,8 @@
 package com.example.korarmy.frag;
 
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -20,7 +23,6 @@ import com.example.korarmy.BottomSheetDialog;
 import com.example.korarmy.R;
 import com.example.korarmy.database.Todo;
 import com.example.korarmy.database.TodoAdapter;
-import com.example.korarmy.database.TodoData;
 import com.example.korarmy.database.TodoDatabase;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -28,6 +30,7 @@ import com.google.android.material.snackbar.Snackbar;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetListener {
@@ -38,7 +41,7 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
     TodoDatabase db;
     private LinearLayoutManager linearLayoutManager;
     private TodoAdapter todoAdapter;
-    private ArrayList<TodoData> arrayList;
+    private ArrayList<Todo> arrayList;
 
     @Nullable
     @Override
@@ -46,9 +49,11 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag2, container, false);
 
+        db = TodoDatabase.getInstance(getActivity());
+
         init();
 
-
+        // 캘린더뷰
         calendarView = (CalendarView) view.findViewById(R.id.calendarview);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -58,6 +63,7 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
             }
         });
 
+        // 플로팅버튼, 일정 저장
         fab = view.findViewById(R.id.floatingbtn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,11 +73,6 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
             }
         });
 
-        db = Room.databaseBuilder(container.getContext(), TodoDatabase.class, "todo-db")
-                .allowMainThreadQueries()
-                .build();
-
-
         return view;
     }
 
@@ -79,7 +80,6 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
     public void onButtonClicked(String todo) {       // 일정 저장
         Toast.makeText(getContext(), todo, Toast.LENGTH_SHORT).show();
         db.todoDao().insert(new Todo(todo));
-
 
     }
 
@@ -90,15 +90,19 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
 
     private void init(){
         recyclerview_todo = view.findViewById(R.id.recyclerview_todo);
-        linearLayoutManager = new LinearLayoutManager( getActivity().getApplicationContext());
+        linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerview_todo.setLayoutManager(linearLayoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerview_todo.getContext(),new LinearLayoutManager(getActivity()).getOrientation());
+        recyclerview_todo.addItemDecoration(dividerItemDecoration);
+
 
         arrayList = new ArrayList<>();
-        todoAdapter = new TodoAdapter(arrayList);
+        todoAdapter = new TodoAdapter();
         recyclerview_todo.setAdapter(todoAdapter);
 
-        TodoData todoData = new TodoData("테스트");
-        arrayList.add(todoData);
-        todoAdapter.notifyDataSetChanged();
+        int size = db.todoDao().getAll().size();
+        for(int i = 0; i < size; i++){
+            todoAdapter.addItems(db.todoDao().getAll().get(i));
+        }
     }
 }

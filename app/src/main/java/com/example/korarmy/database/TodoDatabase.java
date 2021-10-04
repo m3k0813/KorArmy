@@ -9,5 +9,18 @@ import androidx.room.RoomDatabase;
 
 @Database(entities = {Todo.class}, version =  1)
 public abstract class TodoDatabase extends RoomDatabase {
+
     public abstract TodoDao todoDao();
+    private static TodoDatabase instance = null;
+
+    public static synchronized TodoDatabase getInstance(Context context){
+        if(instance == null){
+                instance =  Room.databaseBuilder(context.getApplicationContext(),
+                        TodoDatabase.class, "memo_Database")
+                        .fallbackToDestructiveMigration()
+                        .allowMainThreadQueries()
+                    .build();
+        }
+        return instance;
+    }
 }

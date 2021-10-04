@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.korarmy.R;
+import com.firebase.ui.auth.data.model.User;
 
 import org.w3c.dom.Text;
 
@@ -19,25 +20,22 @@ import java.util.ArrayList;
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> {
 
 
-    private ArrayList<TodoData> arrayList;
+    private ArrayList<Todo> arrayList = new ArrayList<>();
 
-    public TodoAdapter(ArrayList<TodoData> arrayList) {
-        this.arrayList = arrayList;
-    }
 
     @NonNull
     @Override
     public TodoAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.todo_recycler, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
 
-        return holder;
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TodoAdapter.MyViewHolder holder, int position) {
-        holder.tv_todo.setText(arrayList.get(position).getTodo());
+//        holder.tv_todo.setText(arrayList.get(position).getTodo());
+        holder.onBind(arrayList.get(position), position);
 
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -51,16 +49,26 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return (null != arrayList ? arrayList.size() : 0);
+        return arrayList.size();
+    }
+
+    public void addItems(Todo todo) {
+        arrayList.add(todo);
+        notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView tv_todo;
+        private TextView tv_todo;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.tv_todo = (TextView) itemView.findViewById(R.id.tv_todo);
+
+            tv_todo = (TextView) itemView.findViewById(R.id.tv_todo);
+        }
+
+        public void onBind(Todo todo, int position) {
+            tv_todo.setText(todo.getTodo());
         }
     }
 }

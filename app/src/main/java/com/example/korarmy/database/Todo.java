@@ -33,8 +33,6 @@ public class Todo {
 
     @Override
     public String toString(){
-        final StringBuffer sb = new StringBuffer("");
-        sb.append(todo);
-        return sb.toString();
+        return "todo{" + todo;
     }
 }
