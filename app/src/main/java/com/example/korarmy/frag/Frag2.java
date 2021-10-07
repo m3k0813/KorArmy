@@ -15,11 +15,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.korarmy.BottomSheetDialog;
+import com.example.korarmy.ItemTouchHelperCallback;
 import com.example.korarmy.R;
 import com.example.korarmy.database.Todo;
 import com.example.korarmy.database.TodoAdapter;
@@ -42,6 +44,7 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
     private LinearLayoutManager linearLayoutManager;
     private TodoAdapter todoAdapter;
     private ArrayList<Todo> arrayList;
+    private ItemTouchHelper itemTouchHelper;
 
     @Nullable
     @Override
@@ -94,11 +97,14 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
         recyclerview_todo.setLayoutManager(linearLayoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerview_todo.getContext(),new LinearLayoutManager(getActivity()).getOrientation());
         recyclerview_todo.addItemDecoration(dividerItemDecoration);
-
-
+        
         arrayList = new ArrayList<>();
         todoAdapter = new TodoAdapter();
         recyclerview_todo.setAdapter(todoAdapter);
+
+        itemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(todoAdapter));
+        itemTouchHelper.attachToRecyclerView(recyclerview_todo);       // 스와이프 기능
+
 
         int size = db.todoDao().getAll().size();
         for(int i = 0; i < size; i++){
