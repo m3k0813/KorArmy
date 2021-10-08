@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetListener {
+public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetListener{
     private View view;
     private CalendarView calendarView;
     private FloatingActionButton fab;
@@ -84,6 +84,7 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
         Toast.makeText(getContext(), todo, Toast.LENGTH_SHORT).show();
         db.todoDao().insert(new Todo(todo));
 
+
     }
 
     private void BottomSheetDialog() {
@@ -110,5 +111,8 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
         for(int i = 0; i < size; i++){
             todoAdapter.addItems(db.todoDao().getAll().get(i));
         }
+    }
+    public void delete(Todo todo) {
+        db.todoDao().delete(todo);
     }
 }

@@ -46,8 +46,8 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             }
         });
         return view;
-
     }
+
     public interface BottomSheetListener{
         void onButtonClicked(String todo);
     }

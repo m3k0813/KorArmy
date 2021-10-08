@@ -1,6 +1,11 @@
 package com.example.korarmy.database;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,21 +13,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.korarmy.ItemTouchHelperListener;
 import com.example.korarmy.R;
-import com.firebase.ui.auth.data.model.User;
-import com.google.android.material.tabs.TabItem;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> implements ItemTouchHelperListener {
 
 
     private ArrayList<Todo> arrayList = new ArrayList<>();
+    private Context context;
+
 
 
     @NonNull
@@ -30,7 +35,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
     public TodoAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.todo_recycler, parent, false);
-
+        context = parent.getContext();
         return new MyViewHolder(view);
     }
 
@@ -44,7 +49,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
             @Override
             public void onClick(View v) {
                 String s = holder.tv_todo.getText().toString();
-                Toast.makeText(v.getContext(), s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), s+" "+position, Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -88,7 +94,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
 
         public void onBind(Todo todo, int position) {
             tv_todo.setText(todo.getTodo());
-            todo.setId(position);
+
+
+            itemView.setOnLongClickListener(v -> {
+                arrayList.remove(todo);
+                TodoDatabase.getInstance(itemView.getContext()).todoDao().delete(todo);
+                notifyDataSetChanged();
+                return false;
+            });
         }
     }
 }
