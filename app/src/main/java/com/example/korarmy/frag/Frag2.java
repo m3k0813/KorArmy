@@ -82,9 +82,10 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
     @Override
     public void onButtonClicked(String todo) {       // 일정 저장
         Toast.makeText(getContext(), todo, Toast.LENGTH_SHORT).show();
-        db.todoDao().insert(new Todo(todo));
-
-
+        Todo todos = new Todo(todo);
+        db.todoDao().insert(todos);
+        arrayList.add(todos);
+        todoAdapter.notifyDataSetChanged();
     }
 
     private void BottomSheetDialog() {
@@ -92,6 +93,7 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
         bottomSheetDialog.show(getChildFragmentManager(), "BottomSheet");
     }
 
+    // 리사이클러뷰(일정)
     private void init(){
         recyclerview_todo = view.findViewById(R.id.recyclerview_todo);
         linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -111,8 +113,5 @@ public class Frag2 extends Fragment implements BottomSheetDialog.BottomSheetList
         for(int i = 0; i < size; i++){
             todoAdapter.addItems(db.todoDao().getAll().get(i));
         }
-    }
-    public void delete(Todo todo) {
-        db.todoDao().delete(todo);
     }
 }

@@ -77,8 +77,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
 
     @Override
     public void onItemSwipe(int position) {
-        arrayList.remove(position);
-        notifyItemRemoved(position);
+        Toast.makeText(context, "수정", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -94,7 +93,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
 
         public void onBind(Todo todo, int position) {
             tv_todo.setText(todo.getTodo());
-
 
             itemView.setOnLongClickListener(v -> {
                 arrayList.remove(todo);

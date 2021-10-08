@@ -40,8 +40,12 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 String todo = edit_todo.getText().toString();
-                listener.onButtonClicked(todo);
-                dismiss();
+                if (todo.isEmpty()) {
+                    Toast.makeText(getContext(), "일정을 입력하세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    listener.onButtonClicked(todo);
+                    dismiss();
+                }
 
             }
         });
