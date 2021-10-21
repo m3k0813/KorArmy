@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,9 +48,9 @@ public class Frag2 extends Fragment{
     private View view;
     private CalendarView calendarView;
     private FloatingActionButton fab;
-    public Button cha_Btn, del_Btn, save_Btn;
-    public TextView diaryTextView, textView2;
-    public EditText contextEditText;
+    private ImageButton del_Btn, cha_Btn, save_Btn;
+    private TextView textView2;
+    private EditText contextEditText;
     String readDay, str;
 
     @Nullable
@@ -182,7 +183,6 @@ public class Frag2 extends Fragment{
             if (textView2.getText() == null)
             {
                 textView2.setVisibility(View.INVISIBLE);
-                diaryTextView.setVisibility(View.VISIBLE);
                 save_Btn.setVisibility(View.VISIBLE);
                 cha_Btn.setVisibility(View.INVISIBLE);
                 del_Btn.setVisibility(View.INVISIBLE);

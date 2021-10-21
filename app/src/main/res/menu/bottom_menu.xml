@@ -4,19 +4,19 @@
     <item
         android:id="@+id/action_fisrt"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
-        android:title="첫 화면"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="홈"
         />
     <item
         android:id="@+id/action_second"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
-        android:title="첫 화면"
+        android:icon="@drawable/ic_calendar_today_black_24dp"
+        android:title="달력"
         />
     <item
         android:id="@+id/action_third"
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
-        android:title="첫 화면"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="설정"
         />
 </menu>

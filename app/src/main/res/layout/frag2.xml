@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="일정"
-            android:textSize="24dp"/>
+            android:textSize="24dp"
+            android:layout_margin="10dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,30 +46,36 @@
                 android:layout_weight="1" />
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/cha_Btn"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_gravity="right"
-                android:text="수정"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_update_black_24dp"
                 android:visibility="invisible"
                 />
 
-            <Button
+            <ImageButton
                 android:id="@+id/del_Btn"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_gravity="right"
-                android:text="삭제"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_delete_black_24dp"
                 android:visibility="invisible"
                 />
 
         </LinearLayout>
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_gravity="end"
             android:layout_marginTop="20dp"
             android:padding="10dp"
             >
@@ -76,7 +83,7 @@
 
             <EditText
                 android:id="@+id/contextEditText"
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:ems="10"
@@ -91,13 +98,13 @@
                 android:layout_weight="1" />
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/save_Btn"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_gravity="right"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
                 android:text="저장"
-                android:layout_marginLeft="90dp"
+                android:background="@drawable/ic_add_black_24dp"
                 android:visibility="invisible"
             />
 

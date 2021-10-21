@@ -4,12 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#1a77e1"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:background="#1a77e1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -208,63 +211,19 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        >
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:background="@drawable/layout_background"
-            >
-
-
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="달력" />
-
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="오늘의 식단"
-                android:layout_alignParentRight="true"/>
-
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="버튼3"
-                android:layout_alignParentBottom="true"/>
-
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="버튼4"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:background="@drawable/layout_background3"
         android:padding="20dp">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="250dp"
             android:background="@drawable/layout_background"
             />
 
